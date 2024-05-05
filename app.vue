@@ -8,8 +8,20 @@
   </div>
 </template>
 <script setup lang="ts">
-// const res = await useFetch('/api/first_section/add')
-
+// const res = await $fetch('/api/first_section/add',{
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: {
+//     title: 'title my work ',
+//     content: 'test for'
+//   }
+// })
+// console.log(res)
+//
+// const resAll = await $fetch('/api/first_section/all')
+// console.log(resAll)
 
 
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <BannerComponent/>
-    <FirstSection/>
+    <FirstSection v-for="el in resAll" :obj="el" :key="el.id"/>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import BannerComponent from "/components/BannerComponent.vue";
 import FirstSection from "/components/FirstSection.vue";
 
-// const res = await useFetch('/api/first_section/all')
+const resAll = await $fetch('/api/first_section/all')
 </script>
 
 <style scoped>

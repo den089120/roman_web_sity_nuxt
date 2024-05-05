@@ -1,10 +1,10 @@
 // @ts-ignore
 import {$fetch} from "ofetch";
 // @ts-ignore
-import { Repo } from '~/types'
+import {Repo, typeFirstSection} from '~/typesMy'
 
 export default defineEventHandler(async () => {
-    const data = await $fetch<Repo[]>(' http://localhost:8000/api/first_section/all', {
+    const data = await $fetch<Repo[typeFirstSection]>(' http://localhost:8000/api/first_section/all', {
         method: 'GET',
         // headers: {
         //     'Content-Type': 'application/json'
@@ -13,6 +13,7 @@ export default defineEventHandler(async () => {
         //     text: 'Hello **world**!'
         // }
     })
+
 
     return data
 })

@@ -5,9 +5,15 @@
       <ul>
         <li><a href="#">Домашняя страница</a></li>
         <li>
-          <a href="#">Выбор помощи</a>
+          <a href="#">Панель админа</a>
           <ul>
-            <li><a href="">Эвакуатор</a></li>
+            <li>
+              <a href="#">Первая секция</a>
+              <ul>
+                <li><NuxtLink to="/FirstSection/ListComponent">Список секций</NuxtLink></li>
+                <li><NuxtLink to="/FirstSection/AddComponent">Добавить</NuxtLink></li>
+              </ul>
+            </li>
             <li><a href="">Прикурить</a></li>
             <li><a href="">Переобуть калеса</a></li>
             <li>
