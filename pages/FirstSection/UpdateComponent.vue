@@ -6,13 +6,13 @@
     <form method="post" class="cta">
       <div class="row gtr-uniform gtr-50">
         <div class="col-8 col-12-xsmall">
-          <input v-model="title" type="text" name="title" :value="obj.title" />
+          <input v-model="title" type="text" name="title" />
         </div>
         <div class="col-8 col-12-xsmall">
-          <textarea v-model="text" name="text" :value="obj.content" />
+          <textarea v-model="text" name="text" />
         </div>
-        <div @click.prevent="Add" class="col-4 col-12-xsmall">
-          <input type="submit" value="ДОБАВИТЬ" class="fit primary" />
+        <div class="col-4 col-12-xsmall">
+          <input @click.prevent="Add" type="submit" value="ДОБАВИТЬ" class="fit primary" />
         </div>
       </div>
     </form>
@@ -28,6 +28,7 @@ import type {PropType} from "@vue/runtime-core";
 import {ref} from "@vue/reactivity";
 // @ts-ignore
 import {navigateTo} from "nuxt/app";
+import {Ref} from "vue";
 
 const props = defineProps({
   obj: {
@@ -36,21 +37,26 @@ const props = defineProps({
   },
 });
 
-const title: string = ref('')
-const text: string = ref('')
+const title: Ref<string> = ref(props.obj ? props.obj.title : '')
+const text: Ref<string> = ref(props.obj ? props.obj.content : '')
 
 async function Add (event: any) {
-  await $fetch(`/api/first_section/${props.obg.id}`,{
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: {
-      title: title,
-      content: text
-    }
-  })
-  await navigateTo('/FirstSection/ListComponent')
+  if (props.obj) {
+    await $fetch(`/api/first_section/${props.obj.id}`,{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        title: title,
+        content: text
+      }
+    })
+    await navigateTo('/FirstSection/ListComponent')
+  }
+  else {
+    return
+  }
 }
 
 </script>
