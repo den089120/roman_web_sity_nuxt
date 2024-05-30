@@ -14,6 +14,9 @@ export default defineEventHandler ? defineEventHandler(async (event: any) => {
     if (res) {
         const data = await $fetch<Repo[]>(`http://localhost:8000/api/first_section/put`, {
             method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
             query: {
                 id: id
             },

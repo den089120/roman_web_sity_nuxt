@@ -1,15 +1,21 @@
 // @ts-ignore
 import { defineStore } from 'pinia'
 import {TypeFirstSectionStore} from "./typesStores/typeFirstSectionStore";
-import {typeFirstSection} from "#build/typesMy";
+// @ts-ignore
+import {typeFirstSection, typeFirstSectionSmall} from "#build/typesMy";
 
 export const useFirstSectionStore = defineStore(
-    'FirstSectionStore',
     {
+        id:'FirstSectionStore',
         state: (): TypeFirstSectionStore => {
             return {
-                title: '',
-                content: '',
+                firstSectionElement: {
+                    id: 0,
+                    title: '',
+                    content: '',
+                    createdAt: '',
+                    updatedAt: ''
+                },
                 listFirstSection: [
                     {
                         id: 11,
@@ -36,17 +42,72 @@ export const useFirstSectionStore = defineStore(
             }
         },
         actions: {
+            addFirstSection( el: typeFirstSection) {
+                // @ts-ignore
+                this.$patch({firstSectionElement: el})
+                // this.firstSectionElement = el
+            },
             async first_sectionAll() {
                 try {
                     const list: Array<typeFirstSection> = await $fetch('/api/first_section/all')
                     if(list) {
-                        this.listFirstSection = list
+                        // @ts-ignore
+                        this.$patch({listFirstSection: list})
+                        // this.listFirstSection = list
                     }
                 }
                 catch (e) {
                     console.log(e)
                 }
-            }
+            },
+            async first_sectionUpdate(el: typeFirstSection) {
+                try {
+                    await $fetch(`/api/first_section/${el.id}`,{
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            id: el.id
+                        },
+                        body: {
+                            title: el.title,
+                            content: el.content
+                        }
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
+            },
+            async first_sectionAdd(el: typeFirstSectionSmall) {
+                const obj = JSON.stringify({title: el.title, content: el.content})
+                try {
+                    await $fetch('/api/first_section/add',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: obj
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
+            },
+            async first_sectionDelete(el: typeFirstSection) {
+                try {
+                    await $fetch(`/api/first_section/${el.id}`,{
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            id: el.id
+                        }
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
+            },
         }
     }
 )

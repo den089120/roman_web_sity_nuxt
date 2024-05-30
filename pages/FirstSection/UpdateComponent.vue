@@ -12,7 +12,7 @@
           <textarea v-model="text" name="text" />
         </div>
         <div class="col-4 col-12-xsmall">
-          <input @click.prevent="Add" type="submit" value="ДОБАВИТЬ" class="fit primary" />
+          <input @click.prevent="update" type="submit" value="обновить" class="fit primary" />
         </div>
       </div>
     </form>
@@ -28,35 +28,25 @@ import type {PropType} from "@vue/runtime-core";
 import {ref} from "@vue/reactivity";
 // @ts-ignore
 import {navigateTo} from "nuxt/app";
-import {Ref} from "vue";
+// @ts-ignore
+// import {Ref} from "vue";
+import {useFirstSectionStore} from "../../stores/FirstSectionStore";
 
-const props = defineProps({
-  obj: {
-    type: Object as PropType<typeFirstSection>,
-    required: true,
-  },
-});
+const elStore = useFirstSectionStore()
 
-const title: Ref<string> = ref(props.obj ? props.obj.title : '')
-const text: Ref<string> = ref(props.obj ? props.obj.content : '')
+const title: Ref<string> = ref(elStore.firstSectionElement.title)
+const text: Ref<string> = ref(elStore.firstSectionElement.content)
 
-async function Add (event: any) {
-  if (props.obj) {
-    await $fetch(`/api/first_section/${props.obj.id}`,{
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: {
-        title: title,
-        content: text
-      }
-    })
-    await navigateTo('/FirstSection/ListComponent')
+async function update (event: any) {
+  const el = {
+    id: elStore.firstSectionElement.id,
+    title: title.value,
+    content: text.value,
+    createdAt: elStore.firstSectionElement.createdAt,
+    updatedAt: elStore.firstSectionElement.updatedAt
   }
-  else {
-    return
-  }
+  await elStore.first_sectionUpdate(el)
+  await navigateTo('/FirstSection/ListComponent')
 }
 
 </script>
