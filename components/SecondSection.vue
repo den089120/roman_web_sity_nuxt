@@ -1,6 +1,6 @@
 <template>
   <section id="two" class="spotlight style2 right">
-    <span class="image fit main"><img src="public/images/remont-avto.jpg" alt="" /></span>
+    <span class="image fit main"><img src="../public/images/remont-avto.jpg" alt="" /></span>
     <div class="content">
       <header>
         <h2>Проведем диагностику</h2>

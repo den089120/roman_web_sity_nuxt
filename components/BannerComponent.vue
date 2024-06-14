@@ -6,7 +6,7 @@
         <p>Помогаем тем кому нужен срочный ремонт машины<br />
           В любое время в любом месте будем рады вас спасти</p>
       </header>
-      <span class="image"><img src="public/images/rem-avto-gerl.jpg" alt="" style="height: 100%" /></span>
+      <span class="image"><img src="~/public/images/rem-avto-gerl.jpg" alt="" style="height: 100%" /></span>
     </div>
     <a href="#" class="goto-next scrolly">Next</a>
   </section>

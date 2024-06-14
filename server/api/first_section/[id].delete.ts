@@ -7,11 +7,8 @@ export default defineEventHandler(async (event: any) => {
 
     const id = event.context.params.id
 
-    const data = await $fetch<Repo[]>(' http://localhost:8000/api/first_section/delete/', {
-        method: 'delete',
-        query: {
-            id: id
-        }
+    const data = await $fetch<Repo[]>(`http://localhost:8000/api/first_section/${id}`, {
+        method: 'delete'
     })
 
     return data

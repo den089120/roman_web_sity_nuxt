@@ -3,7 +3,7 @@
     <h1 id="logo"><a href="#">AUTO-HELP</a></h1>
     <nav id="nav">
       <ul>
-        <li><a href="#">Домашняя страница</a></li>
+        <li><NuxtLink to="/">Домашняя страница</NuxtLink></li>
         <li>
           <a href="#">Панель админа</a>
           <ul>

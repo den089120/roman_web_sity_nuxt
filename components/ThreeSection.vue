@@ -1,6 +1,6 @@
 <template>
   <section id="three" class="spotlight style3 left">
-    <span class="image fit main bottom"><img src="public/images/remont-DVS.jpg" alt="" /></span>
+    <span class="image fit main bottom"><img src="../public/images/remont-DVS.jpg" alt="" /></span>
     <div class="content">
       <header>
         <h2>Interdum felis blandit praesent sed augue</h2>

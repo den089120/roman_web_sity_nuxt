@@ -1,6 +1,6 @@
 <template>
   <section id="one" class="spotlight style1 bottom">
-    <span class="image fit main"><img src="public/images/avto-remont.jpg" alt="" /></span>
+    <span class="image fit main"><img src="~/public/images/avto-remont.jpg" alt="" /></span>
     <div class="content">
       <div class="container">
         <div class="row">

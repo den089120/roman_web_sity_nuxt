@@ -80,14 +80,21 @@ export const useFirstSectionStore = defineStore(
                 }
             },
             async first_sectionAdd(el: typeFirstSectionSmall) {
-                const obj = JSON.stringify({title: el.title, content: el.content})
+                const bodyMy = new FormData();
+                bodyMy.append("title", el.title);
+                bodyMy.append("content", el.content);
+                bodyMy.append("file", el.fileValue, el.fileName);
+
+                console.log(bodyMy)
+                console.log(el)
+
                 try {
                     await $fetch('/api/first_section/add',{
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'multipart/form-data'
                         },
-                        body: obj
+                        body: bodyMy
                     })
                 } catch (e) {
                     console.log(e)
